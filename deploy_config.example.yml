@@ -1,0 +1,81 @@
+# ══════════════════════════════════════════════════════════════════════════════
+#  deploy_config.example.yml — Template de configuration
+#  Copier vers deploy_config.yml et remplir toutes les valeurs
+#  Ne JAMAIS commiter deploy_config.yml sur git
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── VPS cible ─────────────────────────────────────────────────────────────────
+vps:
+  host:     "mail.yourdomain.com"   # IP ou hostname du VPS
+  user:     "root"
+  ssh_key:  "/path/to/your/ssh_key" # Laisser vide si déploiement depuis le VPS
+  ssh_port: 22
+
+# ── Domaine & IP ──────────────────────────────────────────────────────────────
+domain:  "yourdomain.com"
+vps_ip:  "1.2.3.4"
+
+# ── Sous-domaines Evilginx3 ───────────────────────────────────────────────────
+subdomains:
+  - login
+
+# ── Certificat SSL Cloudflare Origin ──────────────────────────────────────────
+ssl:
+  cert_local: "/path/to/yourdomain.com.pem"
+  key_local:  "/path/to/yourdomain.com.key"
+
+# ── Stack Mail ────────────────────────────────────────────────────────────────
+mail:
+  deploy: false
+
+  dir:       "/opt/mailstack"
+  smtp_dir:  "/opt/smtp"
+
+  db_root_password: "CHANGE_ME"
+  db_user:          "mailuser"
+  db_password:      "CHANGE_ME"
+  db_name:          "mailserver"
+
+  postfixadmin_admin_email:    "admin@yourdomain.com"
+  postfixadmin_admin_password: "CHANGE_ME"
+
+  roundcube_des_key:      "CHANGE_ME_24_CHARS_EXACTLY"   # EXACTEMENT 24 caractères
+  roundcube_db_password:  "CHANGE_ME"
+
+  port_smtp:         25
+  port_roundcube:    8025
+  port_postfixadmin: 8026
+
+# ── EvilGoPhish ───────────────────────────────────────────────────────────────
+evilgophish:
+  deploy: true
+
+  dir:       "/opt/evilgophish"
+  rid_param: "rid"
+
+  phishlet:          "o365"
+  phishlet_hostname: "login.yourdomain.com"
+  lure_path:         "/"
+  unauth_url:        "https://www.microsoft.com"
+
+# ── Réseau Docker ─────────────────────────────────────────────────────────────
+docker:
+  network: "phishing-net"
+  subnet:  "10.10.0.0/24"
+  ips:
+    smtp:         "10.10.0.3"
+    maildb:       "10.10.0.12"
+    dovecot:      "10.10.0.10"
+    postfixadmin: "10.10.0.13"
+    roundcube:    "10.10.0.11"
+    evilgophish:  "10.10.0.6"
+
+# ── Repo local (chemin relatif à ce fichier) ──────────────────────────────────
+repos:
+  local: "."
+
+# ── Options ───────────────────────────────────────────────────────────────────
+options:
+  dry_run: false
+  verbose: false
+  tags: []

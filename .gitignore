@@ -1,0 +1,31 @@
+# Config with real credentials — never commit
+deploy_config.yml
+
+# Source repos — cloned separately, not committed
+evilginx3/
+gophish/
+evilfeed/
+
+# SSL certs
+*.pem
+*.key
+*.crt
+ssl/
+
+# Ansible temp files
+*.retry
+__pycache__/
+*.pyc
+
+# Deploy workspace (generated files)
+.deploy_workspace_*/
+
+# Logs
+*.log
+
+# Campaign data — never commit (contains target/credential data)
+*Events.csv
+*Results.csv
+reported_users.txt
+excluded.txt
+*.xlsx
