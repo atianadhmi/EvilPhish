@@ -1,0 +1,8 @@
+release/
+build/
+private/
+/phishlets
+!/phishlets/example.yaml
+
+/evilginx3
+/proxy

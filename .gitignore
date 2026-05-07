@@ -1,10 +1,10 @@
 # Config with real credentials — never commit
 deploy_config.yml
 
-# Source repos — cloned separately, not committed
-evilginx3/
-gophish/
-evilfeed/
+# Build artifacts inside source repos
+evilginx3/evilginx3
+gophish/gophish
+evilfeed/evilfeed
 
 # SSL certs
 *.pem
